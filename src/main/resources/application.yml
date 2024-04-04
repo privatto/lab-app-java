@@ -1,0 +1,54 @@
+env: ${ENV:dev}
+
+spring:
+ main:
+   banner-mode: 'console'
+ http:
+   encoding:
+     charset: "@project.build.souceEncoding@"
+ application:
+   name: "@project.name@"
+   version: "@project.version@"
+   description: "@project.description@"
+
+#Porta do Servidor
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /
+  #tomcat:
+  #  mbeanregistry:
+  #    enabled: true
+
+#Dados exibidos no endpoint "info" do Actuator
+info:
+ application:
+   name: "@project.name@"
+   version: "@project.version@"
+   description: "@project.description@"
+
+# Metrics Settings
+management:
+  info.env.enabled: true
+  health:
+    livenessstate.enabled: true
+    readinessstate.enabled: true
+    probes.enabled: true
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
+        exclude: threaddump, heapdump, shutdown, sessions
+    jmx.exposure.exclude: threaddump, heapdump, shutdown, sessions
+  metrics:
+    export.prometheus.enabled: true
+  endpoint:
+    metrics.enabled: true
+    prometheus.enabled: true
+    health:
+      show-details: always
+      show-components: always
+      livenessstate.enabled: true
+      readinessstate.enabled: true
+      probes.enabled: true
