@@ -27,14 +27,17 @@ RUN mvn clean install
 ########
 FROM build as test
 
-WORKDIR /app
-RUN mvn exec:java -Dexec.mainClass="com.jansouza.springboot.lab.LabApplicationTests" -Dexec.classpathScope=test
+ENV BUILD_DIR=${ARG_BUILD_DIR}
+WORKDIR ${BUILD_DIR}
+
+RUN mvn test
 
 
 #########
 # Runner
 #########
-FROM eclipse-temurin:17-jdk-alpine
+#FROM eclipse-temurin:17-alpine
+FROM eclipse-temurin:17
 
 ARG ARG_BUILD_DIR
 ENV BUILD_DIR=${ARG_BUILD_DIR}
@@ -45,5 +48,5 @@ WORKDIR ${SPRINGBOOT_DIR}
 COPY --from=build ${BUILD_DIR}/target/*.jar ${SPRINGBOOT_DIR}/app.jar
 
 USER 185
-EXPOSE 8080:8080
+EXPOSE 8080
 CMD ["java", "-jar", "app.jar"]

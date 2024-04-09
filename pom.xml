@@ -12,14 +12,14 @@
 	</parent>
 	
     <groupId>com.jansouza.springboot</groupId>
-	<artifactId>lab-app</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>lab-app-java</artifactId>
+	<version>0.0.1</version>
 	
-    <name>lab-app</name>
+    <name>lab-app-java</name>
 	<description>Lab app for Spring Boot</description>
 	
     <properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	
     <dependencies>

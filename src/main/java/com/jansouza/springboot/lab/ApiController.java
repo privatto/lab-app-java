@@ -23,5 +23,4 @@ public class ApiController {
 		model.addAttribute("name", name);
 		return "info";
 	}
-
 }

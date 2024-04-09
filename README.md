@@ -16,10 +16,11 @@ Build application
 
 Build the Docker image manually by cloning the Git repo.
   ```
-  $ git clone <git_url>
+  $ git clone https://github.com/jansouza/lab-app-java.git
   $ docker build -t lab-app-java .
   ```
-Mavem
+
+Maven
   ```
   mvn clean install
   ```
@@ -35,5 +36,13 @@ Create a container from the image.
 
 Test
 ----------
-    ```
-    ```
+
+Docker
+  ```
+  docker build -t lab-app-java . --target test
+  ```
+
+Maven
+  ```
+  mvn test
+  ```
