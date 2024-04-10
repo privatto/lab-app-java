@@ -18,13 +18,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class ApiControllerTests {
+class ApiControllerTest {
 
     private final ApiController controller;
 	private final MockMvc mockMvc;
 
     @Autowired
-    public ApiControllerTests(ApiController controller, MockMvc mockMvc) {
+    public ApiControllerTest(ApiController controller, MockMvc mockMvc) {
         this.controller = controller;
         this.mockMvc = mockMvc;
     }
