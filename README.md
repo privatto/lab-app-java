@@ -44,5 +44,5 @@ Docker
 
 Maven
   ```
-  mvn test
+  mvn clean test jacoco:report
   ```

@@ -33,7 +33,7 @@ ARG ARG_BUILD_DIR
 ENV BUILD_DIR=${ARG_BUILD_DIR}
 WORKDIR ${BUILD_DIR}
 
-RUN mvn test
+RUN mvn clean test jacoco:report
 
 
 #########
