@@ -9,16 +9,10 @@ import io.micrometer.core.annotation.Timed;
 @RestController
 public class ApiController {
 
-	@GetMapping(path = "/version")
-	public String version(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
+	@Timed(value = "api")
+	@GetMapping(path = "/api")
+	public String version(@RequestParam(name="name", required=false, defaultValue="") String name, Model model) {
 		model.addAttribute("name", name);
 		return "api";
-	}
-
-	@Timed(value = "info")
-	@GetMapping(path = "/info")
-	public String info(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-		model.addAttribute("name", name);
-		return "info";
 	}
 }
