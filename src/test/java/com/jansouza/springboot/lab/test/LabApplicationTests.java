@@ -1,4 +1,4 @@
-package com.jansouza.springboot.lab;
+package com.jansouza.springboot.lab.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -19,11 +19,14 @@ import org.springframework.test.web.servlet.MockMvc;
 @AutoConfigureMockMvc
 class LabApplicationTests {
 
-  @Autowired
-	private GreetingController controller;
+	private final GreetingController controller;
+	private final MockMvc mockMvc;
 
   @Autowired
-	private MockMvc mockMvc;
+  public LabApplicationTests(GreetingController controller, MockMvc mockMvc) {
+      this.controller = controller;
+      this.mockMvc = mockMvc;
+  }
 
   @Test
   void contextLoads() {
