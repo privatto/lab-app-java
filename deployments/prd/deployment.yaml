@@ -6,19 +6,54 @@ metadata:
   namespace: default
   labels:
     app: lab-app-java
+    env: prd
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: lab-app-java
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate      
   template:
     metadata:
       labels:
         app: lab-app-java
     spec:
       containers:
-      - name: lab-app-java
-        image: registry.docker-registry.svc:5001/prd/lab-app-java:latest
-        ports:
-        - containerPort: 8080
-          protocol: TCP
+        - name: lab-app-java
+          image: registry.docker-registry.svc:5001/prd/lab-app-java:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 2
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 2
+          resources:
+            limits:
+              cpu: 0.5
+              memory: 100Mi
+            requests:
+              cpu: 0.1
+              memory: 50Mi
+      automountServiceAccountToken: false

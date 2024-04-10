@@ -8,7 +8,7 @@ metadata:
     app: lab-app-java
 spec:
   ports:
-    - port: 8089
+    - port: 8090
       protocol: TCP
       targetPort: 8080
   selector:

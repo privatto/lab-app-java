@@ -1,4 +1,4 @@
-ARG ARG_BUILD_DIR=/tmp/springboot
+ARG ARG_BUILD_DIR="/tmp/springboot"
 
 #########
 # Build
@@ -7,11 +7,14 @@ FROM maven:3-openjdk-17 AS build
 
 ARG ARG_BUILD_DIR
 ENV BUILD_DIR=${ARG_BUILD_DIR}
-RUN mkdir "${BUILD_DIR}"
+
 WORKDIR ${BUILD_DIR}
 
 # Copy Files
-COPY . .
+COPY .mvn/ .mvn/
+COPY src/ src/
+COPY ./pom.xml .
+COPY ./mvnw .
 
 # Permition
 USER 0
@@ -19,14 +22,14 @@ RUN chown -R 185:0 "${BUILD_DIR}" && chmod -R g=u "${BUILD_DIR}"
 
 # Marven Package
 USER 185
-
-RUN mvn clean install
+RUN mvn clean package
 
 ########
 # Test
 ########
 FROM build AS test
 
+ARG ARG_BUILD_DIR
 ENV BUILD_DIR=${ARG_BUILD_DIR}
 WORKDIR ${BUILD_DIR}
 
