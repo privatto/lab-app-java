@@ -25,7 +25,7 @@ RUN mvn clean install
 ########
 # Test
 ########
-FROM build as test
+FROM build AS test
 
 ENV BUILD_DIR=${ARG_BUILD_DIR}
 WORKDIR ${BUILD_DIR}
