@@ -20,6 +20,11 @@ server:
   #  mbeanregistry:
   #    enabled: true
 
+logging:
+  level:
+    root: INFO
+    com.jansouza.springboot: TRACE
+
 #Dados exibidos no endpoint "info" do Actuator
 info:
  application:

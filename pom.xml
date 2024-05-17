@@ -66,6 +66,23 @@
     		<groupId>io.micrometer</groupId>
     		<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
+		
+		<!-- Log-->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20240303</version>
+		</dependency>
+		<dependency>
+    		<groupId>ch.qos.logback.contrib</groupId>
+    		<artifactId>logback-json-classic</artifactId>
+    		<version>0.1.5</version>
+		</dependency>
+		<dependency>
+    		<groupId>ch.qos.logback.contrib</groupId>
+    		<artifactId>logback-jackson</artifactId>
+    		<version>0.1.5</version>
+		</dependency>
 
 	</dependencies>
 
