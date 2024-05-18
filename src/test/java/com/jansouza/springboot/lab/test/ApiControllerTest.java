@@ -1,7 +1,5 @@
 package com.jansouza.springboot.lab.test;
 
-import com.jansouza.springboot.lab.ApiController;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -15,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+
+import com.jansouza.springboot.lab.controller.ApiController;
 
 @SpringBootTest
 @AutoConfigureMockMvc

@@ -10,7 +10,7 @@ class LabApplicationTest {
 
 	@Test
    public void main() {
-    LabApplication.main(new String[] {});
+      LabApplication.main(new String[] {});
    }
 
 }

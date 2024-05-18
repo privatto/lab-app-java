@@ -11,7 +11,7 @@ spring:
    version: "@project.version@"
    description: "@project.description@"
 
-#Porta do Servidor
+#Server
 server:
   port: ${PORT:8080}
   servlet:
@@ -23,9 +23,9 @@ server:
 logging:
   level:
     root: INFO
-    com.jansouza.springboot: TRACE
+    com.jansouza.springboot: INFO
 
-#Dados exibidos no endpoint "info" do Actuator
+#Actuator endpoint "info"
 info:
  application:
    name: "@project.name@"
