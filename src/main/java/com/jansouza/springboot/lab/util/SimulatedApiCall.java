@@ -1,4 +1,4 @@
-package com.jansouza.springboot.lab;
+package com.jansouza.springboot.lab.util;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;

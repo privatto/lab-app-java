@@ -20,9 +20,12 @@
 	
     <properties>
 		<java.version>17</java.version>
+		<logback.version>1.5.6</logback.version>
+		<logback.contrib.version>0.1.5</logback.contrib.version>
+		<logback.logstash.version>7.4</logback.logstash.version>
 	</properties>
-	
-    <dependencies>
+
+	<dependencies>
         
 		<!-- Spring Boot -->
 		<dependency>
@@ -63,20 +66,20 @@
 
 		<!-- Log-->
 		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20240303</version>
-		</dependency>
+	      	<groupId>ch.qos.logback</groupId>
+		  	<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+	    </dependency>
 		<dependency>
-    		<groupId>ch.qos.logback.contrib</groupId>
-    		<artifactId>logback-json-classic</artifactId>
-    		<version>0.1.5</version>
-		</dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
 		<dependency>
-    		<groupId>ch.qos.logback.contrib</groupId>
-    		<artifactId>logback-jackson</artifactId>
-    		<version>0.1.5</version>
-		</dependency>
+			<groupId>net.logstash.logback</groupId>
+		  	<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logback.logstash.version}</version>
+	    </dependency>
 
 		<!-- Application -->
 		<dependency>
