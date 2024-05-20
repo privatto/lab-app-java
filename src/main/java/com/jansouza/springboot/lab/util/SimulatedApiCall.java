@@ -51,6 +51,7 @@ public class SimulatedApiCall {
     static class SimulatedHttpURLConnection extends HttpURLConnection {
 
         private boolean connected = false;
+        private int response_code = -1;
 
         protected SimulatedHttpURLConnection(URL url) {
             super(url);
@@ -72,6 +73,11 @@ public class SimulatedApiCall {
         public boolean usingProxy() {
             return false;
         }
+        
+        @Override
+        public int getResponseCode() throws IOException{
+            return response_code;
+        }
 
         @Override
         public InputStream getInputStream() throws IOException {
@@ -88,10 +94,12 @@ public class SimulatedApiCall {
             responseJson.addProperty("status", isSuccess ? "success" : "error");
             JsonObject dataJson = new JsonObject();
             if (isSuccess) {
+                response_code = 200;
                 dataJson.addProperty("message", getRandomSuccessMessage(random));
                 dataJson.addProperty("id", random.nextInt(1000));
                 dataJson.addProperty("timestamp", System.currentTimeMillis());
             } else {
+                response_code = 500;
                 dataJson.addProperty("errorCode", random.nextInt(100));
                 dataJson.addProperty("errorMessage", getRandomErrorMessage(random));
             }

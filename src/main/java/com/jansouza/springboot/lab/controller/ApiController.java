@@ -25,23 +25,24 @@ public class ApiController {
 	public String version(@RequestParam(name="name", required=false, defaultValue="") String name, Model model) {
 		model.addAttribute("name", name);
 
-		callApi("mf-service");
-		callApi("legacy-service");
-
-		return "api";
+		String mfServiceRerturn = callApi("mf-service");
+		String legacyServiceRerturn = callApi("legacy-service");
+		
+		return "mfServiceRerturn: "+ mfServiceRerturn + "\n" + "legacyServiceRerturn: "+ legacyServiceRerturn;
 	}
 
-	public void callApi(String service){
+	public String callApi(String service){
 		logger.info("Call " + service);
+		StringBuilder responseData = new StringBuilder();
 		try {
 			long startTime = System.nanoTime();
 
             HttpURLConnection connection = SimulatedApiCall.simulateApiCall("http://" + service + "/api");
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
-            StringBuilder response = new StringBuilder();
+            
             while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+                responseData.append(inputLine);
             }
             in.close();
 			long endTime = System.nanoTime();
@@ -51,12 +52,17 @@ public class ApiController {
 			logJson.addProperty("message", "Return " + service);
             logJson.addProperty("service", service);
 			logJson.addProperty("url", connection.getURL().toString());
-			logJson.addProperty("response", response.toString());
+			logJson.addProperty("response_code", connection.getResponseCode());
+			if (connection.getResponseCode() != 200){
+				logJson.addProperty("response_data", responseData.toString());
+			}
 			logJson.addProperty("duration", (endTime - startTime) / 1_000_000);
 			logger.info(logJson.toString());
 
         } catch (Exception e) {
 			logger.error(service, e);
         }
+
+		return responseData.toString();
 	}
 }
