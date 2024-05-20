@@ -6,11 +6,11 @@ import java.net.HttpURLConnection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.JsonObject;
 import com.jansouza.springboot.lab.util.SimulatedApiCall;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,16 +47,14 @@ public class ApiController {
 			long endTime = System.nanoTime();
             
 			//Log
-			MDC.put("service", service);
-			MDC.put("url", connection.getURL().toString());
-			MDC.put("response", response.toString());
-			MDC.put("duration", Long.toString((endTime - startTime) / 1_000_000));
-    	    logger.info("Return " + service);
-			MDC.remove("service");
-			MDC.remove("url");
-			MDC.remove("response");
-			MDC.remove("duration");
-				
+			JsonObject logJson = new JsonObject();
+			logJson.addProperty("message", "Return " + service);
+            logJson.addProperty("service", service);
+			logJson.addProperty("url", connection.getURL().toString());
+			logJson.addProperty("response", response.toString());
+			logJson.addProperty("duration", (endTime - startTime) / 1_000_000);
+			logger.info(logJson.toString());
+
         } catch (Exception e) {
 			logger.error(service, e);
         }
