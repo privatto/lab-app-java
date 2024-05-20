@@ -28,7 +28,7 @@ public class ApiController {
 		String mfServiceRerturn = callApi("mf-service");
 		String legacyServiceRerturn = callApi("legacy-service");
 		
-		return "mfServiceRerturn: "+ mfServiceRerturn + "\n" + "legacyServiceRerturn: "+ legacyServiceRerturn;
+		return "api return\n\n mfServiceRerturn: "+ mfServiceRerturn + "\n" + "legacyServiceRerturn: "+ legacyServiceRerturn;
 	}
 
 	public String callApi(String service){
