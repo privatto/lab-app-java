@@ -22,7 +22,7 @@ spec:
       labels:
         app: lab-app-java
         env: prd
-        logging: true
+        logging: 'true'
     spec:
       containers:
         - name: lab-app-java
