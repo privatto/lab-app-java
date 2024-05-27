@@ -21,6 +21,8 @@ spec:
     metadata:
       labels:
         app: lab-app-java
+        env: qas
+        logging: true
     spec:
       containers:
         - name: lab-app-java

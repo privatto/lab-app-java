@@ -13,7 +13,7 @@
 	
     <groupId>com.jansouza.springboot</groupId>
 	<artifactId>lab-app-java</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	
     <name>lab-app-java</name>
 	<description>Lab app for Spring Boot</description>

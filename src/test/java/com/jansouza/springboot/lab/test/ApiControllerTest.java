@@ -36,7 +36,7 @@ class ApiControllerTest {
 
     @Test
 	void shouldReturnDefaultMessage() throws Exception {
-		this.mockMvc.perform(get("/api")).andDo(print()).andExpect(status().isOk())
+		this.mockMvc.perform(get("/api/call")).andDo(print()).andExpect(status().isOk())
 				.andExpect(content().string(containsString("api")));
 	}
 

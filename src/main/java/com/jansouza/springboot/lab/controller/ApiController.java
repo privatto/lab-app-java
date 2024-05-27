@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.JsonObject;
@@ -17,11 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import io.micrometer.core.annotation.Timed;
 
 @RestController
+@RequestMapping("/api")
 public class ApiController {
 	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
 
 	@Timed(value = "api")
-	@GetMapping(path = "/api")
+	@GetMapping(path = "/call")
 	public String version(@RequestParam(name="name", required=false, defaultValue="") String name, Model model) {
 		model.addAttribute("name", name);
 
@@ -49,7 +51,7 @@ public class ApiController {
             
 			//Log
 			JsonObject logJson = new JsonObject();
-			logJson.addProperty("message", "Return " + service);
+			logJson.addProperty("text", "Return " + service);
             logJson.addProperty("service", service);
 			logJson.addProperty("url", connection.getURL().toString());
 			logJson.addProperty("response_code", connection.getResponseCode());
@@ -65,4 +67,9 @@ public class ApiController {
 
 		return responseData.toString();
 	}
+
+	@GetMapping("/erro500")
+    public String simularErro() {
+        throw new RuntimeException("Internal Server Error");
+    }
 }
