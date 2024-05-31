@@ -19,10 +19,12 @@ spec:
     type: RollingUpdate      
   template:
     metadata:
+      annotations:
+        logging.enabled: 'true'
+        logging.json: 'true'
       labels:
         app: lab-app-java
         env: prd
-        logging: 'true'
     spec:
       containers:
         - name: lab-app-java
