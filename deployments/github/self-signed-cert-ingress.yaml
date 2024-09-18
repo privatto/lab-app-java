@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lab-app-java-ingress
+spec:
+  ingressClassName: gce
+  tls:
+  - hosts:
+    - lab.robertoprivatto.com
+    secretName: self-signed-tls
+  rules:
+  - host: lab.robertoprivatto.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: lab-app-java-svc
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
