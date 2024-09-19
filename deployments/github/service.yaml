@@ -8,9 +8,9 @@ metadata:
     app: lab-app-java
 spec:
   ports:
-    - port: 8090
+    - port: 80
       protocol: TCP
-      targetPort: 80
+      targetPort: 8080
   selector:
     app: lab-app-java
   type: LoadBalancer
