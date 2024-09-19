@@ -56,18 +56,3 @@ spec:
               cpu: 0.1
               memory: 256Mi
       automountServiceAccountToken: false
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: lab-app-java-svc
-  labels:
-    app: lab-app-java
-spec:
-  type: LoadBalancer
-  selector:
-    app: lab-app-java
-  ports:
-    - protocol: TCP
-      port: 443
-      targetPort: 8080
