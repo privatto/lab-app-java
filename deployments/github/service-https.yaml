@@ -6,10 +6,10 @@ metadata:
   labels:
     app: lab-app-java
 spec:
-  type: LoadBalancer
-  selector:
-    app: lab-app-java
   ports:
     - protocol: TCP
       port: 443
       targetPort: 8080
+  selector:
+    app: lab-app-java
+    type: LoadBalancer
