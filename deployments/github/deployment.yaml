@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: lab-app-java
-          image: jansouza/lab-app-java:latest
+          image: privatto/app-java:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
